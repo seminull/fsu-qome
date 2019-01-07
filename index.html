@@ -11,7 +11,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+
 
   <style>
     .buttons {
@@ -22,12 +23,156 @@
       background-color: #FAFAFA;
       color: #333;
     }
+
+    #app {
+      background-color: #AAA;
+      height: 100%;
+      width: 100%;
+      /*display: flex;
+      align-items: center;
+      justify-content: center;*/
+
+      padding: 15px;
+    }
+
+    #app .container {
+      border-radius: 5px;
+    }
+
+    #app .section {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    #app .section.search {
+      /*background-color: #E1F5FE;*/
+      background-color: #999;
+      border-radius: 5px 5px 0px 0px;
+    }
+
+    #app .section.url {
+      /*background-color: #E8F5E9;*/
+      background-color: #999;
+    }
+
+    #app .section.fsu {
+      /*background-color: #FFEBEE;*/
+      background-color: #999;
+    }
+
+    #app .section.links {
+      /*background-color: #FFFDE7;*/
+      background-color: #999;
+      border-radius: 0px 0px 5px 5px;
+    }
+
+    #math-button {
+      padding: 0px 10px;
+    }
   </style>
 </head>
 <body>
   <div id="app">
     <div class="container">
-      <div class="row">
+
+      <div class="row section search">
+        <div class="col col-lg-12">
+          <form onSubmit="quikhome.google(event, 'google')">
+            <div class="form-group">
+              <label for="google-search">Google</label>
+              <input type="text" name="google-search" class="form-control" id="google-search" placeholder="Search terms">
+            </div>
+            <div class="row">
+              <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" type="button" onClick="quikhome.google(event, 'images')">Images</button>
+              </div>
+              <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" type="button" onClick="quikhome.google(event, 'youtube')">Youtube</button>
+              </div>
+              <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" type="button" onClick="quikhome.google(event, 'froogle')">Froogle</button>
+              </div>
+              <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" type="button" onClick="quikhome.google(event, 'news')">News</button>
+              </div>
+              <!-- <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" onClick="quikhome.google(event, 'groups')">Groups</button>
+              </div> -->
+              <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" type="button" onClick="quikhome.google(event, 'maps')">Maps</button>
+              </div>
+              <div class="col col-lg-2">
+                <button class="btn btn-secondary btn-block" type="button" onClick="quikhome.fsu(event)">FSU</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row section url">
+        <div class="col col-lg-12">
+          <form onSubmit="quikhome.url(event)">
+            <div class="form-group">
+              <label for="url-box">Go directly to url</label>
+              <input type="text" class="form-control" id="url-box" placeholder="">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="section row fsu" style="padding-bottom: 0px;">
+        <div class="col col-lg-6 col-sm-6 col-xs-12">
+          <form onSubmit="quikhome.fsudirectory(event)">
+            <div class="form-group">
+              <label for="fsu-people">FSU Faculty/Staff</label>
+              <input type="text" class="form-control" id="fsu-people" />
+            </div>
+          </form>
+        </div>
+
+        <div class="col col-lg-6 col-sm-6 col-xs-12">
+          <form onSubmit="quikhome.wikipedia(event)">
+            <div class="form-group">
+              <label for="wikipedia-search"><a href="http://www.wikipedia.com">Wikipedia</a></label>
+              <input type="text" class="form-control" id="wikipedia-search" placeholder="">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row section fsu" style="padding-top: 0px;">
+        <div class="col col-lg-6 col-sm-6 col-xs-12">
+          <form name="nav1">
+            <div class="form-group">
+              <select class="form-control nav-to"  name="webpage" onChange="document.location.href=document.nav1.webpage.options[document.nav1.webpage.selectedIndex].value;">
+                <option value="xx" selected>Weather
+                <option value="http://www.nhc.noaa.gov">National Hurricane Center
+                <option value="http://www.noaa.gov/">NOAA
+                <option value="http://www.fsu.edu/~alerts/">FSU Storm Alerts
+                <option value="http://www.weather.com">Weather.com
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="col col-lg-6 col-sm-6 col-xs-12">
+          <form class="form-inline" name="nav2">
+            <div class="form-group" style="width:100%;">
+              <select class="form-control nav-to" style="flex-grow: 1;" name="webpage" onChange="document.location.href=document.nav2.webpage.options[document.nav2.webpage.selectedIndex].value;">
+                <option value="xx" selected>Reference
+                <option value="http://www.mutt.org/doc/manual.txt">Mutt
+                <option value="http://www.freebsd.org">FreeBSD
+                <option value="http://www.tldp.org">Linux
+                <option value="http://www.ruby-doc.org/">Ruby
+                <option value="http://raa.ruby-lang.org/">RAA
+                <option value="http://www.rexswain.com/perl5.html">Perl
+                <option value="http://www.w3.org/TR/html4/index/elements.html">HTML
+              </select>
+              <a id="math-button" href="http://www.math.fsu.edu">m</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row section links">
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 buttons" v-for="button in buttons">
           <a v-bind:href="button.url" class="btn btn-secondary btn-block">{{ button.label }}</a>
         </div>
@@ -36,6 +181,72 @@
   </div>
 
   <script>
+    var urls = {
+      google: 'https://www.google.com/search',
+      images: 'https://images.google.com/images',
+      news: 'https://news.google.com/news',
+      groups: 'https://groups.google.com/groups',
+      froogle: 'https://www.google.com/search',
+      maps: 'http://maps.google.com/maps',
+      amazon: 'http://www.amazon.com',
+      youtube: 'http://www.youtube.com/results',
+      wikipedia: 'http://www.wikipedia.com/wiki',
+      fsudirectory: 'https://apps.its.fsu.edu/Directory/Directory.html',
+    };
+
+    var getTerms = () => {
+      return $('#google-search').val();
+    };
+
+    var quikhome = {
+      google: (e, which) => {
+        e.preventDefault();
+        if (which === 'news') {
+          console.log('wtf');
+          window.location = `${urls[which]}/search/section/q/${getTerms()}`;
+        } else if (which === 'froogle') {
+          window.location = `${urls[which]}?tbm=shop&q=${getTerms()}`;
+        } else {
+          window.location = `${urls[which]}?q=${getTerms()}`;
+        }
+      },
+      url: e => {
+        e.preventDefault();
+        let url = String($('#url-box').val());
+        if (/^https?:\/\//.test(url)) {
+          window.location = (url);
+        } else {
+          if (/\.[\w]{2,4}$/.test(url)) {
+            window.location = (`http://${url}`);
+          } else {
+            window.location = (`http://${url}.com`);
+          }
+        }
+      },
+      youtube: e => {
+        e.preventDefault();
+        window.location = `${urls.youtube}?q=${$('#youtube-search').val()}`;
+      },
+      wikipedia: e => {
+        e.preventDefault();
+        window.location = `${urls.wikipedia}/${$('#wikipedia-search').val()}`;
+      },
+      go: (e, which) => {
+        e.preventDefault();
+        window.location = `${urls[which]}`;
+      },
+      fsu: e => {
+        e.preventDefault();
+        window.location = `${urls.google}?q=site:fsu.edu ${getTerms()}`;
+      },
+      fsudirectory: e => {
+        e.preventDefault();
+        window.location = `${urls.fsudirectory}#result:N|${$('#fsu-people').val()}||||`;
+      }
+    };
+
+    window.quikhome = quikhome;
+
     var app = new Vue({
       el: '#app',
       data: {
@@ -72,6 +283,7 @@
           { url: 'http://www.techmeme.com', label: 'Techmeme' },
           { url: 'http://www.tomshardware.com', label: 'Tom\'s Hardware' },
           { url: 'https://www.wunderground.com/US/FL/Tallahassee.html', label: 'Weather' },
+          { url: 'https://xkcd.com/', label: 'xkcd' },
         ]
       }
     })
