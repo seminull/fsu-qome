@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quikhome</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue"></script>
+
+  <style>
+    .buttons {
+      margin-bottom: 5px;
+    }
+
+    .buttons a {
+      background-color: #FAFAFA;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 buttons" v-for="button in buttons">
+          <a v-bind:href="button.url" class="btn btn-secondary btn-block">{{ button.label }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        buttons: [
+          { url: 'http://www.amazon.com/prime', label: 'Amazon' },
+          { url: 'https://ecommerce.apple.com/', label: 'Apple Edu' },
+          { url: 'https://www.bhphotovideo.com/', label: 'B&H Photo' },
+          { url: 'http://www.betanews.com', label: 'Betanews' },
+          { url: 'http://www.bluesnews.com', label: 'Blues News' },
+          { url: 'http://www.camelcamelcamel.com', label: 'camelcamelcamel' },
+          { url: 'http://www.ebay.com', label: 'Ebay' },
+          { url: 'http://www.engadget.com', label: 'Engadget' },
+          { url: 'http://www.fark.com', label: 'Fark' },
+          { url: 'http://www.freshports.org', label: 'Freshports' },
+          { url: 'http://www.gizmodo.com', label: 'Gizmodo' },
+          { url: 'http://www.govconnection.com/fsu', label: 'govconnection' },
+          { url: 'https://news.ycombinator.com/', label: 'Hacker News' },
+          { url: 'http://www.jalopnik.com/', label: 'jalopnik' },
+          { url: 'https://signup.netflix.com/Login', label: 'Netflix' },
+          { url: 'http://www.newegg.com', label: 'Newegg' },
+          { url: 'https://www.oculus.com/', label: 'Oculus' },
+          { url: 'https://my.fsu.edu', label: 'OMNI' },
+          { url: 'http://www.popurls.com', label: 'PopURLS' },
+          { url: 'http://www.reddit.com', label: 'Reddit' },
+          { url: 'http://www.reddit.com/r/tech', label: 'Reddit Tech' },
+          { url: 'https://www.roadtovr.com/', label: 'Road to VR' },
+          { url: 'http://slashdot.org/index.pl,?op=userlogin&upasswd=WXlEXfmX&unickname=boydm', label: 'Slashdot' },
+          { url: 'http://www.steampowered.com/', label: 'Steam' },
+          { url: 'http://steamdb.info/', label: 'SteamDB' },
+          { url: 'http://tallyconnection.com/events/action~stream/', label: 'Tallyconnection' },
+          { url: 'http://www.tallahasseemagazine.com/Events/', label: 'Tallahassee Mag' },
+          { url: 'http://www.techbargains.com', label: 'Techbargains' },
+          { url: 'http://www.techcrunch.com', label: 'TechCrunch' },
+          { url: 'http://www.techmeme.com', label: 'Techmeme' },
+          { url: 'http://www.tomshardware.com', label: 'Tom\'s Hardware' },
+          { url: 'https://www.wunderground.com/US/FL/Tallahassee.html', label: 'Weather' },
+        ]
+      }
+    })
+  </script>
+</body>
+</html>
