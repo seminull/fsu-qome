@@ -15,6 +15,11 @@
 
 
   <style>
+    html {
+      height: 100%;
+      background-color: #AAA;
+    }
+
     .buttons {
       margin-bottom: 5px;
     }
@@ -183,7 +188,7 @@
   <script>
     var urls = {
       google: 'https://www.google.com/search',
-      images: 'https://images.google.com/images',
+      images: 'https://www.google.com/search',
       news: 'https://news.google.com/news',
       groups: 'https://groups.google.com/groups',
       froogle: 'https://www.google.com/search',
@@ -202,10 +207,11 @@
       google: (e, which) => {
         e.preventDefault();
         if (which === 'news') {
-          console.log('wtf');
           window.location = `${urls[which]}/search/section/q/${getTerms()}`;
         } else if (which === 'froogle') {
           window.location = `${urls[which]}?tbm=shop&q=${getTerms()}`;
+        } else if (which === 'images') {
+          window.location = `${urls[which]}?tbm=isch&q=${getTerms()}`;
         } else {
           window.location = `${urls[which]}?q=${getTerms()}`;
         }
